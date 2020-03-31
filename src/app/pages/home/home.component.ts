@@ -10,7 +10,33 @@ export class HomeComponent implements OnInit {
   checked = true;
   nochecked = false;
   disabled = true;
-  constructor(private router: Router) {}
+  date: Date;
+  months = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre"
+  ];
+  days = [
+    "Domingo",
+    "Lunes",
+    "Martes",
+    "Miercoles",
+    "Jueves",
+    "Viernes",
+    "Sabado"
+  ];
+  constructor(private router: Router) {
+    this.date = new Date();
+  }
 
   ngOnInit(): void {}
 

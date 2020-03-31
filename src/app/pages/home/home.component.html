@@ -2,13 +2,13 @@
   <div class="col-md-4 panel">
     <div class="panel-header">
       <div class="fecha">
-        <h2 class="fecha-dia">12</h2>
-        <p class="mes-anio">JAN <br>2020</p>
+        <h2 class="fecha-dia">{{ date.getDate() }}</h2>
+        <p class="mes-anio">{{ months[date.getMonth()  ] }} <br>{{  date.getFullYear() }}</p>
       </div>
-      <p class="dia-seamana">Tuesday</p>
+      <p class="dia-seamana">{{ days[date.getDay()] }}</p>
       <mat-form-field class="example-full-width">
         <mat-label>Seleccionar Fecha</mat-label>
-        <input disabled matInput [matDatepicker]="picker">
+        <input disabled matInput [matDatepicker]="picker" [(ngModel)]="date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker disabled="false" touchUi #picker></mat-datepicker>
       </mat-form-field>
