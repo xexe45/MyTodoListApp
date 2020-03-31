@@ -1,0 +1,35 @@
+<div class="row justify-content-center top animated fadeIn">
+  <div class="col-md-4">
+    <mat-card class="tarjeta">
+      <div class="tarjeta-header">
+        <div class="titulo">
+          <h4 class="tarjeta-titulo">Login</h4>
+        </div>
+        <div class="boton-fab">
+          <button mat-fab aria-label="Example icon-button with a heart icon">
+            <mat-icon class="icono">create</mat-icon>
+          </button>
+        </div>
+      </div>
+      <mat-card-content class="content">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <mat-label>Correo Electrónico</mat-label>
+            <input type="email" matInput placeholder="tucorreo@example.com">
+          </mat-form-field>
+
+          <mat-form-field class=" example-full-width mt-4">
+            <mat-label>Contraseña</mat-label>
+            <input matInput placeholder="*********" type="password">
+          </mat-form-field>
+
+          <div class="form-group text-center mt-3">
+            <button type="submit" class="boton-login">Ingresar</button>
+            <p class="registro">¿No tienes una cuenta? <a class="enlace" routerLink="/register">Regístrate</a></p>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

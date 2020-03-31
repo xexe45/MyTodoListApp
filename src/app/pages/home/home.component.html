@@ -1,0 +1,60 @@
+<div class="row flexbox animated fadeIn">
+  <div class="col-md-4 panel">
+    <div class="panel-header">
+      <div class="fecha">
+        <h2 class="fecha-dia">12</h2>
+        <p class="mes-anio">JAN <br>2020</p>
+      </div>
+      <p class="dia-seamana">Tuesday</p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Seleccionar Fecha</mat-label>
+        <input disabled matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker disabled="false" touchUi #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="panel-content">
+      <ul class="lista">
+        <li class="lista-item"><span class="realizado">Lorem ipsum dolor sit amet.</span>
+          <mat-checkbox class="example-margin" [(ngModel)]="checked">
+          </mat-checkbox>
+        </li>
+        <li class="lista-item"><span class="realizado">Lorem ipsum dolor sit amet.</span>
+          <mat-checkbox class="example-margin" [(ngModel)]="checked">
+          </mat-checkbox>
+        </li>
+        <li class="lista-item"><span>Lorem ipsum dolor sit amet.</span>
+          <mat-checkbox class="example-margin" [(ngModel)]="nochecked">
+          </mat-checkbox>
+        </li>
+        <li class="lista-item"><span>Lorem ipsum dolor sit amet.</span>
+          <mat-checkbox class="example-margin" [(ngModel)]="nochecked">
+          </mat-checkbox>
+        </li>
+        <li class="lista-item"><span>Lorem ipsum dolor sit amet.</span>
+          <mat-checkbox class="example-margin" [(ngModel)]="nochecked">
+          </mat-checkbox>
+        </li>
+        <li class="lista-item"><span>Lorem ipsum dolor sit amet.</span>
+          <mat-checkbox class="example-margin" [(ngModel)]="nochecked">
+          </mat-checkbox>
+        </li>
+        <li class="lista-item"><span>Lorem ipsum dolor sit amet.</span>
+          <mat-checkbox class="example-margin" [(ngModel)]="nochecked">
+          </mat-checkbox>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="boton-fab">
+    <button (click)="logout()" color="warn" mat-fab>
+      <mat-icon>power_settings_new</mat-icon>
+    </button>
+    <button mat-fab>
+      <mat-icon>add</mat-icon>
+    </button>
+
+  </div>
+</div>

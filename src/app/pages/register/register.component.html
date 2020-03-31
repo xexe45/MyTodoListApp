@@ -1,0 +1,41 @@
+<div class="row justify-content-center top animated fadeInDown">
+  <div class="col-md-4">
+    <mat-card class="tarjeta">
+      <div class="tarjeta-header">
+        <div class="titulo">
+          <h4 class="tarjeta-titulo">Registro</h4>
+        </div>
+        <div class="boton-fab">
+          <button mat-fab aria-label="Example icon-button with a heart icon">
+            <mat-icon class="icono">add</mat-icon>
+          </button>
+        </div>
+      </div>
+      <mat-card-content class="content">
+        <form class="example-form">
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Nombre Completo</mat-label>
+            <input type="text" matInput placeholder="Nombres y Apellidos">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width mt-3">
+            <mat-label>Correo Electrónico</mat-label>
+            <input type="email" matInput placeholder="tucorreo@example.com">
+          </mat-form-field>
+
+          <mat-form-field class=" example-full-width mt-3">
+            <mat-label>Contraseña</mat-label>
+            <input matInput placeholder="*********" type="password">
+          </mat-form-field>
+
+          <div class="form-group text-center mt-3">
+            <button type="submit" class="boton-login">Registrar</button>
+            <p class="registro">ya tienes una cuenta? <a class="enlace" routerLink="/login">Ingresar</a></p>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+/* You can add global styles to this file, and also import other style files */
+$principal : #DA3C57;
+
+@import url('https://fonts.googleapis.com/css?family=Sen&display=swap');
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Sen',
+    sans-serif;
+  background: #F0EFE9;
+}
+
+*:focus {
+  outline: 0 !important;
+}
+
+.top {
+  margin-top: 5%;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.tarjeta {
+  padding: 40px 0 !important;
+  margin: 0 !important;
+
+  .tarjeta-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .titulo {
+      border-left: 4px solid $principal;
+
+      padding: 5px 40px;
+
+
+      .tarjeta-titulo {
+        color: $principal;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+    }
+
+    .boton-fab {
+      margin-right: -30px;
+
+
+    }
+  }
+
+  .content {
+    padding: 40px;
+  }
+
+  .boton-login {
+    border: none;
+    padding: 10px 40px;
+    background: $principal;
+    color: #ffffff;
+
+    &:hover {
+      background: none;
+      border: 1px solid $principal;
+      color: $principal;
+      transition: 0.5s;
+    }
+  }
+
+  .registro {
+    margin-top: 20px;
+    color: #777777;
+
+    .enlace {
+      color: $principal;
+      font-weight: bold;
+    }
+  }
+
+}
