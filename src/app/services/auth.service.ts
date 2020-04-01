@@ -10,6 +10,7 @@ export class AuthService {
   private url = "https://identitytoolkit.googleapis.com/v1/accounts:";
   private apiKey = "AIzaSyBD_Oyc_aIlrjBjzYalR8xL_Xe2QKEd7jY";
   userToken: string;
+  uid: string;
 
   constructor(private http: HttpClient) {
     this.leerToken();
@@ -17,6 +18,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("uid");
   }
 
   login(usuario: UserModel) {
@@ -28,7 +30,7 @@ export class AuthService {
     return this.http.post(url, authData).pipe(
       map(resp => {
         console.log("Entro en el mapa del rxjs");
-        this.guardarToken(resp["idToken"]);
+        this.guardarToken(resp["idToken"], resp["localId"]);
         return resp;
       })
     );
@@ -42,15 +44,28 @@ export class AuthService {
     };
     return this.http.post(url, authData).pipe(
       map(resp => {
-        this.guardarToken(resp["idToken"]);
+        this.guardarToken(resp["idToken"], resp["localId"]);
         return resp;
       })
     );
   }
 
-  private guardarToken(idToken: string) {
+  updateProfile(idToken: string, name: string) {
+    const url = `${this.url}update?key=${this.apiKey}`;
+    const profileData = {
+      idToken,
+      displayName: name,
+      photoUrl: "",
+      returnSecureToken: true
+    };
+
+    return this.http.post(url, profileData);
+  }
+
+  private guardarToken(idToken: string, uid: string) {
     this.userToken = idToken;
     localStorage.setItem("token", idToken);
+    localStorage.setItem("uid", uid);
 
     const hoy = new Date();
     hoy.setSeconds(3600);
@@ -61,8 +76,10 @@ export class AuthService {
   private leerToken() {
     if (localStorage.getItem("token")) {
       this.userToken = localStorage.getItem("token");
+      this.uid = localStorage.getItem("uid");
     } else {
       this.userToken = "";
+      this.uid = "";
     }
 
     return this.userToken;

@@ -12,15 +12,17 @@
         </div>
       </div>
       <mat-card-content class="content">
-        <form class="example-form">
+        <form autocomplete="off" (ngSubmit)="login(forma)" #forma="ngForm" class="example-form">
           <mat-form-field class="example-full-width">
             <mat-label>Correo Electrónico</mat-label>
-            <input type="email" matInput placeholder="tucorreo@example.com">
+            <input required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="usuario.email" name="email"
+              type="email" matInput placeholder="tucorreo@example.com">
           </mat-form-field>
 
           <mat-form-field class=" example-full-width mt-4">
             <mat-label>Contraseña</mat-label>
-            <input matInput placeholder="*********" type="password">
+            <input required minlength="6" [(ngModel)]="usuario.password" name="password" matInput
+              placeholder="*********" type="password">
           </mat-form-field>
 
           <div class="form-group text-center mt-3">

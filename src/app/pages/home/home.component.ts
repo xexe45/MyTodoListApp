@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { AuthService } from "../../services/auth.service";
+import { TasksService } from "../../services/tasks.service";
 
 @Component({
   selector: "app-home",
@@ -34,13 +36,18 @@ export class HomeComponent implements OnInit {
     "Viernes",
     "Sabado"
   ];
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private tasks: TasksService
+  ) {
     this.date = new Date();
   }
 
   ngOnInit(): void {}
 
   logout() {
+    this.auth.logout();
     this.router.navigateByUrl("/login");
   }
 }
