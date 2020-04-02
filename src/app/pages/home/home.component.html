@@ -16,9 +16,9 @@
 
     <div class="panel-content">
       <ul class="lista">
-        <li class="lista-item" *ngFor="let task of tasks.tasks"><span
-            [ngClass]="{'realizado': task.status}">{{ task.text }}</span>
-          <mat-checkbox class="example-margin" [(ngModel)]="task.status">
+        <li class="lista-item" *ngFor="let task of tasks.tasks"><span (click)="editar(task.id)"
+            [ngClass]="{'realizado': task.status}" class="nombreItem">{{ task.text }}</span>
+          <mat-checkbox (change)="seleccionar(task)" class="example-margin" [(ngModel)]="task.status">
           </mat-checkbox>
         </li>
 

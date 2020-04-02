@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { TasksService } from "../../services/tasks.service";
+import { TaskModel } from "../../models/task.class";
 
 @Component({
   selector: "app-home",
@@ -40,7 +41,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private auth: AuthService,
-    private tasks: TasksService
+    public tasks: TasksService
   ) {
     this.date = new Date();
     this.key = localStorage.getItem("key");
@@ -62,5 +63,18 @@ export class HomeComponent implements OnInit {
   cambiar(e) {
     console.log(this.date);
     this.tasks.getTasks(this.key, this.date);
+  }
+
+  seleccionar(task: any) {
+    const updateTask = new TaskModel(task.text, task.date, task.status);
+    this.tasks
+      .updateTask(this.key, task.id, updateTask)
+      .subscribe((resp: any) => {
+        console.log(resp);
+      });
+  }
+
+  editar(id: string) {
+    this.router.navigate(["tasks", id, "edit"]);
   }
 }

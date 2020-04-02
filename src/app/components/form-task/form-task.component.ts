@@ -15,6 +15,9 @@ export class FormTaskComponent implements OnInit {
     date: new Date(),
     status: false
   };
+  @Input() title: string;
+  @Input() method: string;
+  @Input() id: string;
   key: string;
   constructor(private router: Router, private taskService: TasksService) {
     this.key = localStorage.getItem("key");
@@ -52,7 +55,50 @@ export class FormTaskComponent implements OnInit {
 
     const task = new TaskModel(this.task.text, dateFormat, this.task.status);
 
-    this.taskService.createTask(this.key, task).subscribe(
+    if (this.method === "insert") {
+      this.taskService.createTask(this.key, task).subscribe(
+        (resp: any) => {
+          console.log(resp);
+          Swal.close();
+          this.router.navigate(["/home"]);
+        },
+        err => {
+          console.log(err.error.error.message);
+          Swal.fire({
+            title: "Error",
+            icon: "error",
+            text: err.error.error.message
+          });
+        }
+      );
+    } else {
+      this.taskService.updateTask(this.key, this.id, task).subscribe(
+        (resp: any) => {
+          console.log(resp);
+          Swal.close();
+          this.router.navigate(["/home"]);
+        },
+        err => {
+          console.log(err.error.error.message);
+          Swal.fire({
+            title: "Error",
+            icon: "error",
+            text: err.error.error.message
+          });
+        }
+      );
+    }
+  }
+
+  delete() {
+    Swal.fire({
+      allowOutsideClick: false,
+      icon: "info",
+      text: "Espere porfavor..."
+    });
+
+    Swal.showLoading();
+    this.taskService.deleteTask(this.key, this.id).subscribe(
       (resp: any) => {
         console.log(resp);
         Swal.close();

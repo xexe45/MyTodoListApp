@@ -50,9 +50,25 @@ export class TasksService {
     this.http.get(urlTasks).subscribe((tasks: any) => {
       this.tasks = [];
       Object.keys(tasks).forEach(index => {
+        tasks[index].id = index;
         this.tasks.push(tasks[index]);
       });
       console.log(this.tasks);
     });
+  }
+
+  getTask(key: string, id: string) {
+    const url = `${this.url}users/${key}/tasks/${id}.json?auth=${this.auth.userToken}`;
+    return this.http.get(url);
+  }
+
+  updateTask(key: string, id: string, task: TaskModel) {
+    const url = `${this.url}users/${key}/tasks/${id}.json?auth=${this.auth.userToken}`;
+    return this.http.put(url, task);
+  }
+
+  deleteTask(key: string, id: string) {
+    const url = `${this.url}users/${key}/tasks/${id}.json?auth=${this.auth.userToken}`;
+    return this.http.delete(url);
   }
 }

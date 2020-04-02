@@ -1,7 +1,7 @@
 <div class="row flexbox animated zoomIn">
   <div class="col-md-4 panel">
     <div class="panel-header">
-      <h4 class="nombre">Nueva Tarea a realizar</h4>
+      <h4 class="nombre">{{ title }}</h4>
     </div>
     <div class="panel-content">
       <form autocomplete="off" (ngSubmit)="guardar(forma)" #forma="ngForm" class="example-form">
@@ -32,6 +32,9 @@
   <div class="boton-fab">
     <button (click)="regresar()" mat-fab>
       <mat-icon>undo</mat-icon>
+    </button>
+    <button *ngIf="id.length > 0" (click)="delete()" color="warn" mat-fab>
+      <mat-icon>delete</mat-icon>
     </button>
 
 

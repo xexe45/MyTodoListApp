@@ -6,12 +6,18 @@ import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.com
 import { HomeComponent } from "./pages/home/home.component";
 import { AuthGuard } from "./services/auth.guard";
 import { TaskComponent } from "./pages/task/task.component";
+import { TaskEditComponent } from "./pages/task-edit/task-edit.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "tasks/create", component: TaskComponent, canActivate: [AuthGuard] },
+  {
+    path: "tasks/:id/edit",
+    component: TaskEditComponent,
+    canActivate: [AuthGuard]
+  },
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
 ];

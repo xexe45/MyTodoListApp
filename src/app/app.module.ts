@@ -15,6 +15,7 @@ import { AppMaterialModule } from "./app-material.module";
 import { HttpClientModule } from "@angular/common/http";
 import { TaskComponent } from './pages/task/task.component';
 import { FormTaskComponent } from './components/form-task/form-task.component';
+import { TaskEditComponent } from './pages/task-edit/task-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FormTaskComponent } from './components/form-task/form-task.component';
     PageNotFoundComponent,
     HomeComponent,
     TaskComponent,
-    FormTaskComponent
+    FormTaskComponent,
+    TaskEditComponent
   ],
   imports: [
     BrowserModule,
