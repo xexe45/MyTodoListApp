@@ -4,6 +4,7 @@ import { NgForm } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import Swal from "sweetalert2";
 import { Router } from "@angular/router";
+import { TasksService } from "../../services/tasks.service";
 
 @Component({
   selector: "app-login",
@@ -13,7 +14,11 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   usuario: UserModel;
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private taskService: TasksService
+  ) {
     this.usuario = new UserModel("", "", "");
   }
 
@@ -39,8 +44,10 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.usuario).subscribe(
       data => {
         console.log(data);
-        Swal.close();
-        this.router.navigate(["/home"]);
+        this.taskService.getUser(data["localId"]).subscribe((r: any) => {
+          Swal.close();
+          this.router.navigate(["/home"]);
+        });
       },
       err => {
         console.log(err.error.error.message);

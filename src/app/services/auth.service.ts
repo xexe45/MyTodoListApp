@@ -10,7 +10,7 @@ export class AuthService {
   private url = "https://identitytoolkit.googleapis.com/v1/accounts:";
   private apiKey = "AIzaSyBD_Oyc_aIlrjBjzYalR8xL_Xe2QKEd7jY";
   userToken: string;
-  uid: string;
+  key: string;
 
   constructor(private http: HttpClient) {
     this.leerToken();
@@ -18,7 +18,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem("token");
-    localStorage.removeItem("uid");
+    localStorage.removeItem("key");
   }
 
   login(usuario: UserModel) {
@@ -30,7 +30,7 @@ export class AuthService {
     return this.http.post(url, authData).pipe(
       map(resp => {
         console.log("Entro en el mapa del rxjs");
-        this.guardarToken(resp["idToken"], resp["localId"]);
+        this.guardarToken(resp["idToken"]);
         return resp;
       })
     );
@@ -44,7 +44,7 @@ export class AuthService {
     };
     return this.http.post(url, authData).pipe(
       map(resp => {
-        this.guardarToken(resp["idToken"], resp["localId"]);
+        this.guardarToken(resp["idToken"]);
         return resp;
       })
     );
@@ -62,10 +62,9 @@ export class AuthService {
     return this.http.post(url, profileData);
   }
 
-  private guardarToken(idToken: string, uid: string) {
+  private guardarToken(idToken: string) {
     this.userToken = idToken;
     localStorage.setItem("token", idToken);
-    localStorage.setItem("uid", uid);
 
     const hoy = new Date();
     hoy.setSeconds(3600);
@@ -76,13 +75,19 @@ export class AuthService {
   private leerToken() {
     if (localStorage.getItem("token")) {
       this.userToken = localStorage.getItem("token");
-      this.uid = localStorage.getItem("uid");
     } else {
       this.userToken = "";
-      this.uid = "";
     }
 
     return this.userToken;
+  }
+
+  leerKey() {
+    if (localStorage.getItem("key")) {
+      this.userToken = localStorage.getItem("key");
+    } else {
+      this.key = "";
+    }
   }
 
   isAuthenticated(): boolean {

@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { AuthService } from "../../services/auth.service";
 import { UserModel } from "../../models/user.class";
+import { TasksService } from "../../services/tasks.service";
+import { UserDbModel } from "../../models/userDb.class";
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
@@ -15,7 +17,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private tasks: TasksService
   ) {
     this.crearFormulario();
   }
@@ -68,12 +71,12 @@ export class RegisterComponent implements OnInit {
     this.auth.nuevoUsuario(user).subscribe(
       data => {
         console.log(data);
-        this.auth
-          .updateProfile(data["idToken"], user.name)
-          .subscribe((resp: any) => {
-            Swal.close();
-            this.router.navigate(["/home"]);
-          });
+        const userDB = new UserDbModel(data["localId"], user.name, []);
+        this.tasks.createUser(userDB).subscribe(r => {
+          Swal.close();
+          localStorage.setItem("key", r["name"]);
+          this.router.navigate(["/home"]);
+        });
       },
       (err: any) => {
         console.log(err.error.error.message);

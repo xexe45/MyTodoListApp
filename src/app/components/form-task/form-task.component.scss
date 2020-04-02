@@ -1,0 +1,61 @@
+$principal : #DA3C57;
+
+.flexbox {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .panel {
+
+    background: #ffffff;
+    padding-bottom: 20px;
+
+    .panel-header {
+      padding: 20px;
+
+
+      .nombre {
+        color: $principal;
+        text-align: center;
+      }
+
+
+    }
+
+    .panel-content {
+      padding: 20px;
+      margin-bottom: 20px;
+
+      .example-form {
+        min-width: 150px;
+        max-width: 500px;
+        width: 100%;
+      }
+
+      .example-full-width {
+        width: 100%;
+      }
+
+      .realizado {
+        color: rgb(175, 175, 175);
+      }
+
+      .boton {
+        border: none;
+        padding: 10px 40px;
+        background: $principal;
+        color: #ffffff;
+
+
+      }
+    }
+  }
+
+  .boton-fab {
+    margin-top: -30px;
+
+  }
+
+}

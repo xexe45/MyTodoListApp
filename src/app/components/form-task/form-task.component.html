@@ -1,0 +1,39 @@
+<div class="row flexbox animated zoomIn">
+  <div class="col-md-4 panel">
+    <div class="panel-header">
+      <h4 class="nombre">Nueva Tarea a realizar</h4>
+    </div>
+    <div class="panel-content">
+      <form autocomplete="off" (ngSubmit)="guardar(forma)" #forma="ngForm" class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Tarea</mat-label>
+          <input name="text" required minlength="2" [(ngModel)]="task.text" matInput
+            placeholder="Nombre de Tarea a realizar">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Seleccionar Fecha</mat-label>
+          <input disabled matInput [matDatepicker]="picker" name="date" required [(ngModel)]="task.date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker disabled="false" touchUi #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="form-group mt-2">
+          <mat-checkbox name="status" [(ngModel)]="task.status" class="realizado">Hecho!</mat-checkbox>
+        </div>
+        <div class="form-group mt-3">
+          <div class="form-group text-center mt-3">
+            <button type="submit" class="boton">Guardar</button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div class="boton-fab">
+    <button (click)="regresar()" mat-fab>
+      <mat-icon>undo</mat-icon>
+    </button>
+
+
+  </div>
+</div>

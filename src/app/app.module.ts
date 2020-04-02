@@ -13,6 +13,8 @@ import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.com
 import { HomeComponent } from "./pages/home/home.component";
 import { AppMaterialModule } from "./app-material.module";
 import { HttpClientModule } from "@angular/common/http";
+import { TaskComponent } from './pages/task/task.component';
+import { FormTaskComponent } from './components/form-task/form-task.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { HttpClientModule } from "@angular/common/http";
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    TaskComponent,
+    FormTaskComponent
   ],
   imports: [
     BrowserModule,
